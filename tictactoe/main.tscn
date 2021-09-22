@@ -132,3 +132,13 @@ __meta__ = {
 
 [node name="Sprite" parent="." instance=ExtResource( 14 )]
 position = Vector2( 365.307, 481.547 )
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 178.0
+margin_top = 92.0
+margin_right = 578.0
+margin_bottom = 481.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
