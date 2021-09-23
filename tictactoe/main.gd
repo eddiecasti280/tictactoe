@@ -2,18 +2,17 @@ extends Node2D
 
 
 # Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+var grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]] # 2D array with 3 rows and 3 columns instanciated at 0
+var score : int = 0
+var player_name : String = "MonsieurBloo"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	resize()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass
 
 func resize():
 	OS.set_window_size(Vector2(800,500))

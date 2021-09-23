@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://grid.png" type="Texture" id=2]
@@ -14,11 +14,20 @@
 [ext_resource path="res://Score_label.gd" type="Script" id=12]
 [ext_resource path="res://Round_label.gd" type="Script" id=13]
 [ext_resource path="res://hand_pointer.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Robot_platform.gd" type="Script" id=15]
+[ext_resource path="res://enemy_marker.png" type="Texture" id=16]
+[ext_resource path="res://player_marker.png" type="Texture" id=17]
+[ext_resource path="res://GridContainer.gd" type="Script" id=18]
+[ext_resource path="res://Player_label.gd" type="Script" id=19]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 36
+font_data = ExtResource( 11 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
@@ -26,6 +35,14 @@ font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 11 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -72,6 +89,7 @@ texture = ExtResource( 9 )
 position = Vector2( 650, 390 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 5 )
+script = ExtResource( 15 )
 
 [node name="Robot" type="Sprite" parent="."]
 position = Vector2( 645.438, 316.813 )
@@ -80,24 +98,27 @@ texture = ExtResource( 8 )
 
 [node name="Player_label" type="Label" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 36.0
-margin_top = 213.762
-margin_right = 115.0
-margin_bottom = 258.762
+margin_left = 4.0
+margin_top = 214.0
+margin_right = 164.0
+margin_bottom = 259.0
 custom_fonts/font = SubResource( 1 )
 text = "
 Player"
 align = 1
+script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Score_label" type="Label" parent="."]
-margin_left = 215.972
-margin_top = 59.4546
-margin_right = 255.972
-margin_bottom = 73.4546
-text = "1"
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 216.0
+margin_top = 45.0
+margin_right = 262.0
+margin_bottom = 76.0
+custom_fonts/font = SubResource( 4 )
+text = "0"
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -130,15 +151,46 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" parent="." instance=ExtResource( 14 )]
-position = Vector2( 365.307, 481.547 )
-
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 178.0
 margin_top = 92.0
 margin_right = 578.0
 margin_bottom = 481.0
 columns = 3
+script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="GridContainer"]
+position = Vector2( 50.9089, 42.8625 )
+scale = Vector2( 0.0881986, 0.0898884 )
+frames = SubResource( 5 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="GridContainer"]
+position = Vector2( 50.9089, 42.8625 )
+scale = Vector2( 0.0881986, 0.0898884 )
+frames = SubResource( 5 )
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="GridContainer"]
+position = Vector2( 50.9089, 42.8625 )
+scale = Vector2( 0.0881986, 0.0898884 )
+frames = SubResource( 5 )
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="GridContainer"]
+position = Vector2( 50.9089, 42.8625 )
+scale = Vector2( 0.0881986, 0.0898884 )
+frames = SubResource( 5 )
+
+[node name="Enemy_marker" type="Sprite" parent="."]
+position = Vector2( 231.229, 272.916 )
+scale = Vector2( 0.134239, 0.135186 )
+texture = ExtResource( 16 )
+
+[node name="Player_marker" type="Sprite" parent="."]
+position = Vector2( 369.875, 275.662 )
+scale = Vector2( 0.0911455, 0.0951067 )
+texture = ExtResource( 17 )
+
+[node name="Hand" parent="." instance=ExtResource( 14 )]
+position = Vector2( 365.307, 481.547 )
