@@ -6,6 +6,7 @@ extends Sprite
 # var b = "text"
 var x_pos : float = 645.437988
 var y_pos : float = 316.812988
+var initial_rotation : float = 0
 var up_bob : Vector2 = Vector2(0, 5) 
 var down_bob : Vector2 = Vector2(0, -5)
 var wait : int = 100
@@ -13,6 +14,7 @@ var wait : int = 100
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	position = Vector2(645.437988, 316.812988)
+	rotation = initial_rotation
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -21,5 +23,7 @@ func _process(delta):
 	wait -= 1
 	if get_parent().game_counter % 2 == 0 and wait == 0:
 		position += down_bob
+		rotation -= PI/6
 	elif get_parent().game_counter % 2 != 0 and wait == 0:
 		position += up_bob
+		rotation += PI/6

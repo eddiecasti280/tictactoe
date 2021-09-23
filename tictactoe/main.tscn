@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://grid.png" type="Texture" id=2]
@@ -17,11 +17,12 @@
 [ext_resource path="res://Robot_platform.gd" type="Script" id=15]
 [ext_resource path="res://enemy_marker.png" type="Texture" id=16]
 [ext_resource path="res://player_marker.png" type="Texture" id=17]
-[ext_resource path="res://GridContainer.gd" type="Script" id=18]
+[ext_resource path="res://Winner.gd" type="Script" id=18]
 [ext_resource path="res://Player_label.gd" type="Script" id=19]
 [ext_resource path="res://Player_platform.gd" type="Script" id=20]
 [ext_resource path="res://Robot.gd" type="Script" id=21]
 [ext_resource path="res://Player.gd" type="Script" id=22]
+[ext_resource path="res://top_left_button.gd" type="Script" id=23]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -39,13 +40,9 @@ font_data = ExtResource( 10 )
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 11 )
 
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[sub_resource type="DynamicFont" id=5]
+size = 60
+font_data = ExtResource( 10 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -61,9 +58,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+[node name="Grid_sprite" type="Sprite" parent="."]
 position = Vector2( 400, 260.714 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
@@ -157,46 +152,122 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="."]
-margin_left = 178.0
-margin_top = 92.0
-margin_right = 578.0
-margin_bottom = 481.0
+[node name="Hand" parent="." instance=ExtResource( 14 )]
+position = Vector2( 365.307, 481.547 )
+
+[node name="Game_grid" type="GridContainer" parent="."]
+margin_left = 175.0
+margin_top = 85.0
+margin_right = 583.0
+margin_bottom = 479.0
 columns = 3
-script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="GridContainer"]
-position = Vector2( 50.9089, 42.8625 )
-scale = Vector2( 0.0881986, 0.0898884 )
-frames = SubResource( 5 )
+[node name="top_left_button" type="TextureButton" parent="Game_grid"]
+margin_right = 133.0
+margin_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 16 )
+expand = true
+script = ExtResource( 23 )
 
-[node name="AnimatedSprite2" type="AnimatedSprite" parent="GridContainer"]
-position = Vector2( 50.9089, 42.8625 )
-scale = Vector2( 0.0881986, 0.0898884 )
-frames = SubResource( 5 )
+[node name="top_center_button" type="TextureButton" parent="Game_grid"]
+margin_left = 137.0
+margin_right = 270.0
+margin_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 16 )
+expand = true
 
-[node name="AnimatedSprite3" type="AnimatedSprite" parent="GridContainer"]
-position = Vector2( 50.9089, 42.8625 )
-scale = Vector2( 0.0881986, 0.0898884 )
-frames = SubResource( 5 )
+[node name="top_right_button" type="TextureButton" parent="Game_grid"]
+margin_left = 274.0
+margin_right = 407.0
+margin_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 16 )
+expand = true
 
-[node name="AnimatedSprite4" type="AnimatedSprite" parent="GridContainer"]
-position = Vector2( 50.9089, 42.8625 )
-scale = Vector2( 0.0881986, 0.0898884 )
-frames = SubResource( 5 )
+[node name="middle_left_button" type="TextureButton" parent="Game_grid"]
+margin_top = 132.0
+margin_right = 133.0
+margin_bottom = 260.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 16 )
+expand = true
 
-[node name="Enemy_marker" type="Sprite" parent="."]
-position = Vector2( 231.229, 272.916 )
-scale = Vector2( 0.134239, 0.135186 )
-texture = ExtResource( 16 )
+[node name="middle_center_button" type="TextureButton" parent="Game_grid"]
+margin_left = 137.0
+margin_top = 132.0
+margin_right = 270.0
+margin_bottom = 260.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 16 )
+expand = true
 
-[node name="Player_marker" type="Sprite" parent="."]
-position = Vector2( 369.875, 275.662 )
-scale = Vector2( 0.0911455, 0.0951067 )
-texture = ExtResource( 17 )
+[node name="middle_right_button" type="TextureButton" parent="Game_grid"]
+margin_left = 274.0
+margin_top = 132.0
+margin_right = 407.0
+margin_bottom = 260.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 16 )
+expand = true
 
-[node name="Hand" parent="." instance=ExtResource( 14 )]
-position = Vector2( 365.307, 481.547 )
+[node name="bottom_left_button" type="TextureButton" parent="Game_grid"]
+margin_top = 264.0
+margin_right = 133.0
+margin_bottom = 392.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 16 )
+expand = true
+
+[node name="bottom_center_button" type="TextureButton" parent="Game_grid"]
+margin_left = 137.0
+margin_top = 264.0
+margin_right = 270.0
+margin_bottom = 392.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 16 )
+expand = true
+
+[node name="bottom_right_button" type="TextureButton" parent="Game_grid"]
+margin_left = 274.0
+margin_top = 264.0
+margin_right = 407.0
+margin_bottom = 392.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 16 )
+expand = true
+
+[node name="Winner" type="Label" parent="."]
+modulate = Color( 0.180392, 0.733333, 0.878431, 1 )
+margin_left = 139.882
+margin_top = 210.13
+margin_right = 614.882
+margin_bottom = 341.13
+custom_fonts/font = SubResource( 5 )
+align = 1
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
